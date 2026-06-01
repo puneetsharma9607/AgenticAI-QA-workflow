@@ -245,13 +245,13 @@ Include:
 
 ## 🚀 STEP 7: Commit to Git Repository
 
-**Git Repository URL:** `https://github.com/puneetsharma9607/agentic-ai-e2e-qa-workflow-playwright.git`
+**Git Repository URL:** `https://github.com/puneetsharma9607/AgenticAI-QA-workflow.git`
 
 ### Prompt:
 
 Now I need to commit all the test artifacts to the Git repository using the GitHub MCP server.
 
-**Git Repository URL:** `https://github.com/puneetsharma9607/agentic-ai-e2e-qa-workflow-playwright.git`
+**Git Repository URL:** `https://github.com/puneetsharma9607/AgenticAI-QA-workflow.git`
 
 Please perform the following Git operations:
 
