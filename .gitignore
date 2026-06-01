@@ -25,4 +25,3 @@ node_modules/
 /playwright/.cache/
 /playwright/.auth/
 .env
-QAEnd2EndPromptFile.md

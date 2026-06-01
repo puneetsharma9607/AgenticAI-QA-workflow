@@ -1,6 +1,6 @@
 # Agentic AI E2E QA Workflow with Playwright + MCP
 
-A QA workflow that combines Playwright with MCP-based AI agents to automate end-to-end test planning, execution, healing, reporting, and Git operations.
+An AI-assisted QA workflow that combines Playwright, MCP servers, and specialized agents to automate test planning, exploration, execution, healing, reporting, and Git operations.
 
 ## What this project is
 
@@ -13,7 +13,7 @@ This repository is a working example of an agentic QA pipeline for a checkout wo
 - execute tests and heal failures
 - document results and commit artifacts to Git
 
-The goal is not only to automate tests, but to demonstrate a repeatable AI-assisted QA flow.
+The goal is not to replace QA engineers, but to demonstrate how AI agents can accelerate repetitive QA activities while allowing testers to focus on requirement analysis, risk assessment, and quality strategy.
 
 ## Why agentic AI is used here
 
@@ -61,6 +61,61 @@ Key benefits:
 7. **Commit to Git**
    - The workflow stages and commits the relevant test artifacts to the configured Git repository.
 
+## Workflow Architecture
+
+User Story
+    ↓
+Planner Agent
+    ↓
+Exploratory Testing Agent
+    ↓
+Automation Generator Agent
+    ↓
+Test Execution Agent
+    ↓
+Test Healer Agent
+    ↓
+Report Generator Agent
+    ↓
+GitHub MCP Agent
+
+## Workflow Prompts
+
+The complete natural-language workflow used to orchestrate the AI agents is available here.
+
+1. End to end prompt - prompts/QAEnd2EndPromptFile.md
+
+This prompt coordinates the entire QA lifecycle:
+
+- User story analysis
+- Test planning
+- Exploratory testing
+- Playwright script generation
+- Test execution
+- Self-healing
+- Test reporting
+- Git operations
+
+The prompt is intentionally included in the repository as a reference implementation for AI-assisted QA workflows and can be adapted for other applications and testing scenarios.
+
+2. Workflow Trigger Prompt
+
+To execute the complete workflow, the user only needs to provide a single natural-language instruction to GitHub Copilot:
+
+```text
+Now I would like to perform end to end QA workflow using multiple agents and MCP servers that I have defined in current prompt file prompts/QAEnd2EndPromptFile.md
+```
+
+This lightweight prompt acts as the entry point for the workflow.
+
+Behind the scenes, the AI assistant loads and executes the detailed orchestration logic defined in:
+
+```text
+prompts/QAEnd2EndPromptFile.md
+```
+
+This demonstrates how a complex QA process can be initiated through a single natural-language command while leveraging multiple specialized agents for planning, exploration, automation, execution, healing, reporting, and Git operations.
+
 ## Getting started
 
 ### Install dependencies
@@ -104,3 +159,4 @@ git push origin main
 - The app under test is `https://www.saucedemo.com`
 - Use the built-in credentials: `standard_user` / `secret_sauce`
 - This repository is meant to show an AI-driven test workflow, not a production-grade test suite
+- This project demonstrates AI-assisted QA workflows. Human expertise is still essential for requirement validation, risk assessment, test strategy, and business-critical decision making.
