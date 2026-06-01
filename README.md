@@ -36,6 +36,49 @@ Key benefits:
 - **GitHub**: version control and remote repository integration
 - **SauceDemo**: target web app for checkout test coverage
 
+## Framework Components
+
+### MCP Configuration
+
+The MCP server definitions and connection details are maintained in `.vscode/mcp.json`, allowing GitHub Copilot and compatible MCP clients to discover and use the configured tools.
+
+
+| MCP Server                     | Purpose                                                      |
+| ------------------------------ | ------------------------------------------------------------ |
+| Playwright MCP                 | Browser automation, exploration, screenshots, UI interaction |
+| GitHub MCP                     | Git operations, commits, pushes, repository interaction      |
+| Filesystem MCP (if configured) | File creation, updates, and artifact management              |
+
+
+### Agent Definitions
+
+Agent configurations are stored in: 
+`.github/agents/`
+
+The workflow uses specialized agents for different QA activities:
+
+| Agent                     | Responsibility                             |
+| ------------------------- | ------------------------------------------ |
+| playwright-test-planner   | User story analysis and test plan creation |
+| playwright-test-generator | Playwright automation generation           |
+| playwright-test-healer    | Failure analysis and self-healing          |
+| report-generator          | Test report creation                       |
+| github-agent              | Git commit and repository operations       |
+
+Each agent is focused on a specific responsibility, allowing the workflow to follow a modular and agentic design pattern.
+
+### Prompts
+
+Prompt files are stored in: 
+`prompts/`
+
+| Prompt                 | Purpose                             |
+| ---------------------- | ----------------------------------- |
+| QAEnd2EndPromptFile.md | Full workflow orchestration         |
+| RunWorkflowPrompt.md   | Single-line workflow trigger       |
+
+
+
 ## How the flow works
 
 1. **Read the user story**
@@ -45,7 +88,7 @@ Key benefits:
    - The planner agent generates a structured, automation-ready test plan in `specs/saucedemo-checkout-test-plan.md`.
 
 3. **Exploratory testing**
-   - The agent uses Playwright tools to inspect the app, verify behavior, and collect stable element selectors and UI observations.
+   - The exploratory testing agent uses Playwright MCP tools to inspect the application, validate workflows, and discover stable selectors.
    - Results are saved in `specs/exploratory-results.md`.
 
 4. **Generate automation scripts**
@@ -63,6 +106,7 @@ Key benefits:
 
 ## Workflow Architecture
 
+```text
 User Story
     ↓
 Planner Agent
@@ -78,12 +122,13 @@ Test Healer Agent
 Report Generator Agent
     ↓
 GitHub MCP Agent
+```
 
 ## Workflow Prompts
 
 The complete natural-language workflow used to orchestrate the AI agents is available here.
 
-1. End to end prompt - prompts/QAEnd2EndPromptFile.md
+1. End to end prompt - `prompts/QAEnd2EndPromptFile.md`
 
 This prompt coordinates the entire QA lifecycle:
 
@@ -98,7 +143,7 @@ This prompt coordinates the entire QA lifecycle:
 
 The prompt is intentionally included in the repository as a reference implementation for AI-assisted QA workflows and can be adapted for other applications and testing scenarios.
 
-2. Workflow Trigger Prompt
+2. Workflow Trigger Prompt - `prompts/RUnWorkflowPrompt.md`
 
 To execute the complete workflow, the user only needs to provide a single natural-language instruction to GitHub Copilot:
 
@@ -153,6 +198,8 @@ git push origin main
 - `tests/saucedemo-checkout/` — generated Playwright test suites
 - `test-results/SCRUM-101-checkout-test-report.md` — execution report and summary
 - `.vscode/mcp.json` — MCP server configuration
+- `.github/agents/` — agent definitions and responsibilities
+- `prompts/QAEnd2EndPromptFile.md` — complete workflow orchestration prompt
 
 ## Notes
 
