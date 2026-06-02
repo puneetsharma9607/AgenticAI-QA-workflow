@@ -54,8 +54,6 @@ Ensure each test scenario includes:
 * Organized test scenarios with clear structure
 * Browser exploration screenshots (if needed)
 
-Here is the complete text transcribed from the provided screenshots, organized by their respective steps and sections:
-
 ---
 
 ## 🧪 STEP 3: Perform Exploratory Testing
